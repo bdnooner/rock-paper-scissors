@@ -2,27 +2,6 @@ function getComputerChoice() {
   return Math.floor(Math.random() * 3) + 1;
 }
 
-function getHumanChoice() {
-  let choice = prompt("Rock, Paper, or Scissors?").toLowerCase();
-
-  if (choice != "rock" && choice != "paper" && choice != "scissors") {
-    console.log(
-      "There was an issue with your choice, randomly assigning for you..."
-    );
-
-    return (rand = Math.floor(Math.random() * 3) + 1);
-  }
-
-  switch (choice) {
-    case "rock":
-      return 1;
-    case "paper":
-      return 2;
-    case "scissors":
-      return 3;
-  }
-}
-
 function playRound(human, computer) {
   function getChoiceText(choice) {
     switch(choice) {
@@ -40,7 +19,7 @@ function playRound(human, computer) {
 
   p_human.textContent = `You: ${humanChoice}`;
   p_comp.textContent = `Computer: ${computerChoice}`;
-  result.appendChild(p_human);
+  results.appendChild(p_human);
   results.appendChild(p_comp);
 
   switch (result) {
@@ -86,36 +65,20 @@ function playRound(human, computer) {
   }
 
   if(humanScore === 5 || compScore === 5) {
-      if(humanScore > compScore){
-        p_final.textContent = `YOU WIN!`;
-        results.appendChild(p_final);
-      } else {
-        p_final.textContent = `YOU LOSE...`;
-        results.appendChild(p_final);
-      }
+    if(humanScore > compScore){
+      p_final.textContent = `YOU WIN!`;
+      results.appendChild(p_final);
+    } else {
+      p_final.textContent = `YOU LOSE...`;
+      results.appendChild(p_final);
+    }
+    humanScore = 0;
+    compScore = 0;
   }
 }
 
 let humanScore = 0;
 let compScore = 0;
-
-
-// for (let i = 0; i < 5; i++) {
-//   let comp = getComputerChoice();
-//   let human = getHumanChoice();
-
-//   console.log(`Round ${i + 1}`);
-//   playRound(human, comp);
-// }
-//console.log(`Final Score:\nYou: ${humanScore}\nComputer: ${compScore}`);
-
-if (humanScore > compScore) {
-  console.log("You win!");
-} else if (compScore > humanScore) {
-  console.log("You lose...");
-} else {
-  console.log("It was a tie.");
-}
 
 const results = document.querySelector(".results");
 const p_human =  document.createElement("p");
